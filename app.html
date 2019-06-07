@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>App</title>
+	<link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		<h1 class="display-1 text-center my-5">Todo List</h1>
+		<div class="row">
+			<div class="col-12 my-2">
+				<input type="text"  placeholder="Todo" name="todo" id="todo" class="form-control">
+			</div>
+			<div class="col-12 my-2">
+				<a href="#" class="btn btn-primary d-block">Add</a>
+			</div>
+		</div>
+		<ul class="list-group">
+			
+		</ul>
+	</div>
+<script src="jquery.min.js"></script>
+<script>
+
+	$(document).ready(function(){
+		$("ul").hide();
+		var todos=[];
+		todos=localStorage.getItem("todo");
+		var arrTodos=todos.split(",");
+		arrTodos.forEach(function(e){
+			$(".list-group").append(`<li class='list-group-item'>${e}</li>`);
+		});
+		$("ul").slideDown(1000);
+		$(".btn").click(function(){
+			$(".result").hide();
+			var todo=$("#todo").val();
+			var todos=[];
+			todos.push(localStorage.getItem("todo"));
+			todos.push(todo);
+			localStorage.setItem("todo",todos);
+			$(".list-group").append(`<li class='list-group-item'>${todo}</li>`);
+		});
+	});
+</script>
+</body>
+</html>
